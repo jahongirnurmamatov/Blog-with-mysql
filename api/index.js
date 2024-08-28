@@ -1,16 +1,17 @@
 import express from 'express';
 import cors from 'cors';
-
 import postRoute from './routes/posts.js';
 import authRoute from './routes/auth.js';
 
 import { db } from './db.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
 //middlewares
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 //endpoinst
 app.use('/api/posts',postRoute);
