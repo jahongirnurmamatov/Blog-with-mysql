@@ -1,20 +1,64 @@
-import { Link } from 'react-router-dom'
-import './login.scss'
+import { Link } from "react-router-dom";
+import "./login.scss";
+import { useState } from "react";
+import axios from "axios";
 
 const Register = () => {
+  const [inputs, setInputs] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:8000/api/auth/register", inputs);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
-    <div className='auth'>
+    <div className="auth">
       <h1>Register</h1>
-      <form >
-        <input type="text" placeholder='Username' required/>
-        <input type="text" placeholder='Email' required/>
-        <input type="password" placeholder='Password' required/>
+      <form onSubmit={handleSubmit}> 
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          required
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          name="email"
+          placeholder="Email"
+          required
+          onChange={handleChange}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+          onChange={handleChange}
+        />
         <button >Register</button>
         <p>Error message</p>
-        <span>Don't you have an accout? <Link style={{textDecoration:'none'}} to={'/register'}>Login</Link></span>
+        <span>
+          Don't you have an accout?{" "}
+          <Link style={{ textDecoration: "none" }} to={"/register"}>
+            Login
+          </Link>
+        </span>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
