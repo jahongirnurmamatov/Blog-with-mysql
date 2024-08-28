@@ -6,6 +6,7 @@ import Write from "./pages/write/Write";
 import Login from "./pages/login/Login";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Register from "./pages/login/Register";
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,7 @@ function App() {
           <Route path="/blog/:id" element={<Single />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
