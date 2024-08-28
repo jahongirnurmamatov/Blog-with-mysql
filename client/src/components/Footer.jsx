@@ -1,9 +1,17 @@
-import React from 'react'
+import './footer.scss';
 
 const Footer = () => {
   return (
-    <div>Footer</div>
-  )
-}
+    <footer>
+      <div className="logo">
+          <img src="/logo.png" alt="" />
+          <span>logify</span>
+        </div>
+      <span>
+        Made with love and <b>React.js</b>
+      </span>
+    </footer>
+  );
+};
 
-export default Footer
+export default Footer;

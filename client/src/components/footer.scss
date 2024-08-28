@@ -1,0 +1,27 @@
+$lightGreen: #b9e7e7;
+footer{
+    margin-top: 100px;
+    padding: 20px;
+    background-color: $lightGreen;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 60px;
+        }
+        span {
+          font-family: "Dancing Script", cursive;
+          font-optical-sizing: auto;
+          font-weight: 500;
+          font-style: normal;
+          font-size: 35px;
+          font: italic;
+          color: orangered;
+        }
+      }
+}
