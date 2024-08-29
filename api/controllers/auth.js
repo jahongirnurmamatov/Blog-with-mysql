@@ -15,10 +15,11 @@ export const login = (req, res) => {
 
     const { password, ...info } = data[0];
 
-    const token = jwt.sign({ id: data[0].id }, "jwtKey");
+    const token = jwt.sign({ id: data[0].id }, "jwtSecretKey");
+
     res
-      .cookie("blog_token", token, {
-        httpOnly: true,
+      .cookie("accessToken", token, {
+        httpOnly: true 
       })
       .status(200)
       .json(info);

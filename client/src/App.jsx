@@ -7,6 +7,9 @@ import Login from "./pages/login/Login";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Register from "./pages/login/Register";
+import axios from "axios";
+
+axios.defaults.withCredentials = true;
 function App() {
   return (
     <BrowserRouter>
