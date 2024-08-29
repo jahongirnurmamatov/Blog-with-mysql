@@ -10,7 +10,7 @@ const Single = () => {
   const { id } = useParams();
   const { currentUser } = useContext(AuthContext);
   const navigate=useNavigate();
-  console.log(id);
+  
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -61,7 +61,7 @@ const Single = () => {
         <p>{post?.desc}</p>
       </div>
       <div className="menu">
-        <Menu />
+        <Menu cat={post?.cat} postId={post?.postId}/>
       </div>
     </div>
   );
