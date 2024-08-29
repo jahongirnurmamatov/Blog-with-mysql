@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./menu.scss";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const Menu = ({ cat, postId }) => {
@@ -29,9 +29,11 @@ const Menu = ({ cat, postId }) => {
           <div className="post" key={post.id}>
             {post.id !== postId ? (
               <>
-                <img src={post.img} alt="" />
+                <img src={`/uploads/${post.img}`} alt="" />
                 <h2>{post.title}</h2>
-                <button>Read more</button>
+                <Link className="link" to={`/post/${post.id}`}>
+                  <button>Read more</button>
+                </Link>
               </>
             ) : (
               <></>
