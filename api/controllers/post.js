@@ -10,6 +10,14 @@ export const getPosts = (req, res) => {
     return res.status(200).json(data);
   });
 };
-export const getPost = (req, res) => {};
+export const getPost = (req, res) => {
+  const id = req.params.id;
+  const q =
+    "SELECT `username`, `title`, `desc`, p.img, u.img AS userImg, `cat`, `date` FROM blog.users AS u JOIN blog.posts AS p on u.id=p.uid WHERE p.id=?";
+  db.query(q, [id], (err, data) => {
+    if (err) return res.json(err);
+    return res.status(200).json(data[0]);
+  });
+};
 export const deletePost = (req, res) => {};
 export const updatePost = (req, res) => {};
