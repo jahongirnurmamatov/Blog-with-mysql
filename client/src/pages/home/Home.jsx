@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import "./home.scss";
 import { Link } from "react-router-dom";
 const posts = [
@@ -28,6 +29,7 @@ const posts = [
 ];
 
 const Home = () => {
+
   return (
     <div className="home">
       <div className="posts">

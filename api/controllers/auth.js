@@ -8,7 +8,7 @@ export const login = (req, res) => {
     if (err) return res.status(401).json(err);
     if (data.length === 0) return res.status(404).json("User not found!");
     //check password
-    
+
     const isPassMatch = bcyrpt.compareSync(req.body.password, data[0].password);
 
     if (!isPassMatch) return res.status(403).json("Wrong username or password");
@@ -19,7 +19,7 @@ export const login = (req, res) => {
 
     res
       .cookie("accessToken", token, {
-        httpOnly: true 
+        httpOnly: true,
       })
       .status(200)
       .json(info);
@@ -45,4 +45,12 @@ export const register = (req, res) => {
     });
   });
 };
-export const logout = (req, res) => {};
+export const logout = (req, res) => {
+  res
+    .clearCookie("accessToken", {
+      sameSite: "none",
+      secure: true,
+    })
+    .status(200)
+    .json("User logged out");
+};
