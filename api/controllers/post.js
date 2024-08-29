@@ -19,5 +19,11 @@ export const getPost = (req, res) => {
     return res.status(200).json(data[0]);
   });
 };
-export const deletePost = (req, res) => {};
+export const deletePost = (req, res) => {
+    const q = "DELETE from blog.posts WHERE id=?";
+    db.query(q,[req.params.id],(err,data)=>{
+        if (err) return res.json(err);
+        return res.status(200).json('Post removed') ;
+    })
+};
 export const updatePost = (req, res) => {};

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Menu from "../../components/Menu";
 import "./single.scss";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import { AuthContext } from "../../context/authContext";
@@ -9,6 +9,7 @@ const Single = () => {
   const [post, setPost] = useState(null);
   const { id } = useParams();
   const { currentUser } = useContext(AuthContext);
+  const navigate=useNavigate();
   console.log(id);
   useEffect(() => {
     const fetchPost = async () => {
@@ -22,6 +23,14 @@ const Single = () => {
     fetchPost();
   }, [id]);
 
+  const handleDelete = async()=>{
+    try {
+      await axios.delete(`http://localhost:8000/api/posts/${id}`);
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="single">
       <div className="content">
@@ -35,14 +44,14 @@ const Single = () => {
             <span>{post?.username}</span>
             <p>Posted {moment(post?.date).fromNow()}</p>
           </div>
-          {currentUser.id === post?.uid && (
+          {currentUser?.username === post?.username && (
             <div className="edit">
               <div className="btn">
                 <Link to={"/write?edit=2"}>
                   <img src="/edit.png" alt="" />
                 </Link>
               </div>
-              <div className="btn">
+              <div onClick={handleDelete} className="btn">
                 <img src="/delete.png" alt="" />
               </div>
             </div>
